@@ -10,7 +10,6 @@ import Currency from './Currency';
 
 // == Composant
 const Currencies = ({ currencies }) => {
-  console.log(currencies)
 
   return (
     <div className="currencies">

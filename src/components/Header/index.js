@@ -10,12 +10,12 @@ import './styles.scss';
 const Header = (props) => (
   <div className="header">
     <h1 className='header__title'>Converter</h1>
-    <p className='header__content'>{props.base} euro</p>
+    <p className='header__content'>{props.baseAmount} euro</p>
   </div>
 );
 
 Header.propTypes = {
-  base: PropTypes.number
+  baseAmount: PropTypes.number
 }
 
 Header.defaultProps = {
