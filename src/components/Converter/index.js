@@ -31,6 +31,11 @@ class Converter extends Component {
     }; // on initialise le state qui représente l'état du composant. c'est un objet et il doit être imutable.
   }
 
+ setCurrency = (name, rate) => {
+    console.log({name, rate});
+    this.setState(this.state.currentCurrency = {currency : name, rate : rate});
+  }
+
   handleToggle = () => {
     this.setState({
       open : !this.state.open
@@ -44,8 +49,8 @@ class Converter extends Component {
       <div className="converter">
         <Header baseAmount={baseAmount} />
         <Toggler isOpen={open} onClick={this.handleToggle} />
-        { open && <Currencies currencies={currencies} />}
-        <Amount currency={currentCurrency.currency} value={currentCurrency.rate * baseAmount}/>
+        { open && <Currencies setCurrency={this.setCurrency} currencies={currencies} />}
+        <Amount currency={currentCurrency.currency} value={(currentCurrency.rate * baseAmount).toFixed(2)}/>
       </div>
     );
   }
