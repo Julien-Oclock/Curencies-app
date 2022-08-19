@@ -30,6 +30,22 @@
       transition-duration: $transition-fast;
     }
   }
+
+  &__search{
+    padding: $gutter;
+    max-width: 250px;
+    margin-top: $gutter;
+    font-weight: 500;
+    font-size: $h4;
+    font-weight: 300;
+    color : $main-color;
+    margin: 0;
+    transition: background-color $transition-slow;
+    border:none;
+    &::placeholder {
+      color: $alt-color;
+    }
+  }
 }
 
 

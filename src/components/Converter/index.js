@@ -26,7 +26,8 @@ class Converter extends Component {
       currentCurrency : {
         currency : 'USD',
         rate : 1.09
-      }
+      },
+      search : ''
       
     }; // on initialise le state qui représente l'état du composant. c'est un objet et il doit être imutable.
   }
@@ -42,15 +43,28 @@ class Converter extends Component {
     });
   }
 
+  handleChange = (e) => {
+    this.setState({
+      search : e.target.value
+    });
+  }
+
   render(){
     // ici 'open' n'est pas une réference, à this.state.open mais à la valeur de this.state.open. C'est une copie de la valeur de this.state.open
-    const {open, currencies, baseAmount, currentCurrency} = this.state; 
+    const { open, currencies, baseAmount, currentCurrency, search } = this.state; 
     return (
       <div className="converter">
-        <Header baseAmount={baseAmount} />
-        <Toggler isOpen={open} onClick={this.handleToggle} />
-        { open && <Currencies setCurrency={this.setCurrency} currencies={currencies} />}
-        <Amount currency={currentCurrency.currency} value={(currentCurrency.rate * baseAmount).toFixed(2)}/>
+        <Header baseAmount={ baseAmount } />
+        <Toggler isOpen={ open } onClick={ this.handleToggle } />
+        { open && 
+          <Currencies 
+            search = { search }
+            setCurrency={ this.setCurrency } 
+            currencies={ currencies }
+             onSearch = { this.handleChange }
+          />
+        }
+        <Amount currency={ currentCurrency.currency } value={ (currentCurrency.rate * baseAmount).toFixed(2) }/>
       </div>
     );
   }

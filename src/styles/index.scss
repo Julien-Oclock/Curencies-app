@@ -5,7 +5,7 @@
 
 body {
   font-family: $font;
-  background-color: $alt-color;
+  background-color: #ffd9cc;
   font-weight: 300;
   color: $main-color;
   display: flex;
@@ -16,4 +16,5 @@ body {
 
 * {
   box-sizing: border-box;
+  font-family: $font;
 }
