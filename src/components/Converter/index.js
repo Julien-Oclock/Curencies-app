@@ -49,9 +49,23 @@ class Converter extends Component {
     });
   }
 
+  getFilteredCurrencies = () => {
+
+    const { currencies, search } = this.state;
+
+    if(search.trim() === ''){
+      return currencies;
+    }
+
+    return currencies.filter((
+      currency => 
+        currency.name.toLowerCase().trim().includes(search.toLowerCase().trim())
+    ))
+  }
+
   render(){
     // ici 'open' n'est pas une réference, à this.state.open mais à la valeur de this.state.open. C'est une copie de la valeur de this.state.open
-    const { open, currencies, baseAmount, currentCurrency, search } = this.state; 
+    const { open, baseAmount, currentCurrency, search } = this.state; 
     return (
       <div className="converter">
         <Header baseAmount={ baseAmount } />
@@ -59,12 +73,12 @@ class Converter extends Component {
         { open && 
           <Currencies 
             search = { search }
-            setCurrency={ this.setCurrency } 
-            currencies={ currencies }
+            setCurrency= { this.setCurrency } 
+            currencies= { this.getFilteredCurrencies() }
              onSearch = { this.handleChange }
           />
         }
-        <Amount currency={ currentCurrency.currency } value={ (currentCurrency.rate * baseAmount).toFixed(2) }/>
+        <Amount currency= { currentCurrency.currency } value={ (currentCurrency.rate * baseAmount).toFixed(2) }/>
       </div>
     );
   }

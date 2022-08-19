@@ -11,6 +11,13 @@ import Currency from './Currency';
 // == Composant
 const Currencies = ({ currencies, setCurrency, search, onSearch }) => {
 
+  const filteredCurrencies = () => {
+    currencies = currencies.filter((
+      currency => 
+        currency.name.toLowerCase().trim().includes(search.toLowerCase().trim())
+    ))
+  }
+
   return (
     <div className="currencies">
       <h2 className='currencies__title'>Currencies</h2>
@@ -23,6 +30,7 @@ const Currencies = ({ currencies, setCurrency, search, onSearch }) => {
       ></input>
       <ul className='currencies__list'>
         {currencies.map((currency) => (
+          
           <Currency
             key={currency.name}
             name={currency.name}
